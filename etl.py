@@ -43,28 +43,21 @@ def process_log_file(cur, filepath):
 
     # When doing sample below on my local, the columns are re-ordered alphabetically
     time_df = pd.DataFrame.from_dict(dict(zip(column_labels, time_data)))
-    # to avoid this, going to be explicit
+
+    #being explicit on column order, re-ordered alphabetically when running on local
+    time_df = time_df[['start_time', 'hour', 'day', 'week', 'month', 'year', 'weekday']]
 
     for i, row in time_df.iterrows():
-        #print(row.values)
-        #print (row.index.values)
-        #print(row)
-        #print(row['start_time'])
-        #cur.execute(time_table_insert, list(row))
-        cur.execute(time_table_insert, [row['start_time'], row['hour'], row['day'], \
-                                        row['week'], row['month'], row['year'], \
-                                        row['weekday']])
+        cur.execute(time_table_insert, list(row))
 
-    # load user table
-    user_df = pd.DataFrame({'user_id': df['userId'],'first_name': df['firstName'], \
-        'last_name': df['lastName'], 'gender': df['gender'], \
-        'level': df['level']});
+    user_df = df[['userId', 'firstName', 'lastName', 'gender', 'level']]
+
+    #being explicit on column order, re-ordered alphabetically when running on local
+    user_df = user_df[['userId', 'firstName', 'lastName', 'gender', 'level']]
 
     # insert user records
     for i, row in user_df.iterrows():
-        #cur.execute(user_table_insert, row)
-        cur.execute(user_table_insert, [row['user_id'], row['first_name'], row['last_name'], \
-                                        row['gender'], row['level']])        
+        cur.execute(user_table_insert, row)
 
     # insert songplay records
     for index, row in df.iterrows():
@@ -94,7 +87,6 @@ def process_data(cur, conn, filepath, func):
         func(cur, datafile)
         conn.commit()
         print('{}/{} files processed.'.format(i, num_files))
-
 
 def main():
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
