@@ -20,8 +20,10 @@ def databaseSummary(cur):
 	#https://stackoverflow.com/questions/18495737/why-do-i-get-extra-commas-in-my-python-slqlite-select-results
 	#result = cur.fetchall()
 
-	result = [row[0] for row in cur.fetchall()]
+	table_names = [row[0] for row in cur.fetchall()]
 	print('Tables in Database: %s' % table_names)
+	print("\n")
+	return table_names
 
 #https://stackoverflow.com/questions/1349332/python-passing-a-function-into-another-function
 def summarizeTables(cur, table_names):
@@ -55,7 +57,7 @@ def main():
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
     cur = conn.cursor()
 
-    databaseSummary(cur)
+    #databaseSummary(cur)
     summarizeTables(cur, databaseSummary(cur))
 
     conn.close()
