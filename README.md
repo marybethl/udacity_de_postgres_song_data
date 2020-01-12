@@ -39,7 +39,7 @@ State and justify your database schema design and ETL pipeline.
 
 ### Steps to Running ETL Pipeline
 
-1. Run create_tables.py to create your database and tables.
+1. Run create_tables.py to create your database and tables. Optional script for QA: quality_checks.py 
 2. Run test.ipynb to confirm the creation of your tables with the correct columns. Make sure to click "Restart kernel" to close the connection to the database after running this notebook.
 3. Run etl.py to process the datasets
 4. Run test.ipynb to test records were added
@@ -49,6 +49,7 @@ State and justify your database schema design and ETL pipeline.
 ### Query Samples
 
 ### Add-ons
+1. `quality_checks.py` - Run after create_tables.py. Will output user-defined tables in the database as well as column names in each tables.
 
 #### Reporting
 
