@@ -9,7 +9,8 @@ State and justify your database schema design and ETL pipeline.
 
 #### Architecture
 
-![](images/etl_pipeline.jpg)
+<p align="center"><img src="images/etl_pipeline.jpg">
+</p>
 
 #### Files
 
@@ -28,9 +29,8 @@ State and justify your database schema design and ETL pipeline.
 
 #### Tables + Fields
 
-![](images/table_schemas.jpg)
-
-### Processing the Data
+<p align="center"><img src="images/table_schemas.jpg">
+</p>
 
 ### Steps to Running ETL Pipeline
 
@@ -46,8 +46,7 @@ State and justify your database schema design and ETL pipeline.
 ### Add-ons
 1. `quality_checks.py` - Run after create_tables.py. Will output user-defined tables in the database as well as column names in each tables.
 
-#### Reporting
-
-#### Sample Architecture on Google Cloud Platform 
-
-![](images/gcp_architecture.jpg)
+#### ToDo 
+* Compile/Copy Statement
+* Charts/Dashboard
+* Sample Architecture on GCP (Cloud Functions)
